@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.24.1/dist/phaser.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.24.1/dist/phaser.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
+    <style>
+    canvas{
+    width:100%;
+        }</style>
+    <title>Game</title>
+</head>
+<body>
+
+    <script>
+   
+let gameScene= new Phaser.Scene('Game');
+gameScene.preload=function(){
+    this.load.image('background', 'assets/background.jpg');
+    this.load.image('player', 'assets/hero.png');
+    this.load.image('dragon', 'assets/dragon.jpg');
+};   
+gameScene.create=function(){
+    let bg=this.add.sprite(0,0,'background');
+    bg.setPosition(640/2,360/2);
+    bg.setScale(2,2);
+    let player=this.add.sprite(70,240,'player');
+    player.setScale(0.3,0.3);
+    //bg.setOrigin(0,0);
+    this.dragon1=this.add.sprite(300,240,'dragon');
+    this.dragon1.setScale(0.4,0.4);
+    let dragon2=this.add.sprite(410,200,'dragon');
+    
+    dragon2.setScale(0.4,0.4);
+    this.dragon1.flipX=true;
+    this.dragon1.angle=0;
+    
+    let gameW=this.sys.game.config.width;
+    let gameH=this.sys.game.config.height;
+};
+        gameScene.update=function(){
+           if(this.dragon1.x<600){ this.dragon1.x+=0.01;}
+        };
+        
+        
+        let config={
+            type:Phaser.AUTO,
+            width:640,
+            height:360,
+            scene: gameScene
+        }
+        let game=new Phaser.Game(config);
+</script>
+
+
+</body>
+</html>
